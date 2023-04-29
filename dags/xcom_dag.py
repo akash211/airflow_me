@@ -34,4 +34,6 @@ with DAG(
 
     t3 = BashOperator(task_id="t3", bash_command="echo ''")
 
-    t1 >> branch >> [t2, t3]
+    t4 = BashOperator(task_id="t4", bash_command="echo ''", trigger_rule='none_failed_min_one_success')
+
+    t1 >> branch >> [t2, t3] >> t4
